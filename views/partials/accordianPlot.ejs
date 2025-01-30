@@ -1,0 +1,20 @@
+<div class="accordion accordion-flush mt-2" id="data-trend-accordian-<%= index %>">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-<%= index %>" aria-expanded="true" aria-controls="collapse-<%= index %>">
+                See data trends
+            </button>
+        </h2>
+        <div id="collapse-<%= index %>" class="accordion-collapse collapse collapse" data-bs-parent="#data-trend-accordian-<%= index %>">
+            <div class="accordion-body">
+                <div style="height:300px;width: 100%;">
+                    <canvas id="<%= index %>-overview-chartjs"></canvas>
+                </div>
+                <script>
+                    makeDataOverviewChartjs("<%= index %>-overview-chartjs", <%- JSON.stringify(data) %>)
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

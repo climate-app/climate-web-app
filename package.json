@@ -1,0 +1,31 @@
+{
+  "name": "climate-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "yarn concat && yarn minify && node server.js",
+    "startDev": "yarn concat && yarn minify && nodemon --ignore public/ server.js",
+    "concat": "node ./assets/backend/concatFrontendFunctions.js",
+    "minify": "minify ./assets/tmp/frontend-functions.js > ./public/frontend-functions.js && minify ./assets/styles.css > ./public/styles.min.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^7.9.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "concat-files": "^0.1.1",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "minify": "^12.0.1",
+    "path": "^0.12.7"
+  }
+}

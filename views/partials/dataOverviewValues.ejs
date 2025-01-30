@@ -1,0 +1,55 @@
+<div id="env-var-<%= index %>" class="py-2">
+    <div class="col-sm-12">
+        <div class="bg-primary p-3">
+            <h6>
+                <strong>
+                    <%= name %>
+                </strong>
+            </h6>
+            <div class="row text-center">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <strong class="h4 col-6 col-sm-12 overview-value">
+                            <span id="past">
+                                <%= past %>
+                            </span>
+                            <%= units %>
+                        </strong>
+                        <div class="col-6 col-sm-12 overview-text">1990-2022 average</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <strong class="h4 col-6 col-sm-12 overview-value">
+                            <span id="future" class="rcp45">
+                                <%= future45 %>
+                            </span>
+                            <span id="future" class="rcp85" style="display: none;">
+                                <%= future85 %>
+                            </span>
+                            <%= units %>
+                        </strong>
+                        <div class="col-6 col-sm-12 overview-text">2050 projection</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <strong class="h4 col-6 col-sm-12 overview-value">
+                            <span id="change" class="rcp45">
+                                <%= change45 %>
+                            </span>
+                            <span id="change" class="rcp85" style="display: none;">
+                                <%= change85 %>
+                            </span>
+                            <%= units %>
+                        </strong>
+                        <div class="col-6 col-sm-12 overview-text">Change</div>
+                    </div>
+                </div>
+            </div>
+            <!-- data for plot -->
+            <% let accordianData={data: data, index: index}; %>
+                <%- include('accordianPlot', accordianData) %>
+        </div>
+    </div>
+</div>

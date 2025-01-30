@@ -1,0 +1,43 @@
+<div id="" class="py-2">
+    <div class="col-sm-12">
+        <div class="bg-primary p-3">
+            <div class="d-flex align-items-start">
+                <div style="max-width:100px;">
+                    <img src="https://www.openaustralia.org.au/images/mpsL/<%= id %>.jpg" width="100%" height="auto">
+
+                </div>
+                <div class="col px-2">
+                    <p class="h3">
+                        <span>
+                            <%= latest_member.name.first %>
+                                <%= latest_member.name.last %>
+                        </span>
+                    </p>
+                    <p class="h4">
+                        <span>
+                            <%= latest_member.party %>
+                        </span>
+                    </p>
+                    <p class="h4">
+                        Representative for
+                        <span>
+                            <%= latest_member.electorate %>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat mollitia cum veniam
+                nobis fugit ex hic magni doloribus suscipit repellat? Ipsum veritatis, tempore cum minus vero
+                necessitatibus natus laboriosam at.
+            </div>      
+
+            <% policy_comparisons.forEach(e=> { %>
+                <% if (e.policy_comparisons.length==0){ return} %>
+                    <%- include('accordianPolicy', e) %>
+                        <% }) %>
+
+        </div>
+    </div>
+
+</div>

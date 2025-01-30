@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+    <header class="border-bottom border-white">
+        <%- include('partials/navbar', {homeURL: homeURL}); %>
+    </header>
+
+    <style>
+        @media only screen and (max-width: 576px) {
+            .overview-text {
+                text-align: left;
+            }
+
+            .overview-value {
+                text-align: right;
+            }
+        }
+    </style>
+
+    <main>
+
+        <div class="p-2">
+            <h3>Data Overview</h3>
+            <p>The query is <%= addressMetadata.id %>
+            </p>
+            <a href="/" class="btn btn-primary">Go back</a>
+        </div>
+
+        <div id="env-vars" class="p-2">
+            <h4> Temperature </h3>
+                <% data.forEach((row, i)=> { %>
+                    <% row.index=i %>
+                        <%- include('partials/dataOverviewValues', row) %>
+                            <% }); %>
+        </div>
+
+        <div id="poli-vars" class="p-2">
+            <h4> Politics </h3>
+            <%- include('partials/mpOverviewSection', mpData) %>
+        </div>
+
+    </main>
+
+    <footer>
+        <%- include('partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

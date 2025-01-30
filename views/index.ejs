@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body>
+
+    <header class="border-bottom border-white">
+        <%- include('partials/navbar', {homeURL: homeURL}); %>
+    </header>
+
+    <main class="main-home">
+        <div class="row h-100 align-items-start px-2">
+
+            <div>
+                <h1 class="display-1 text-center my-5">climometer</h1>
+
+                <p class="text-center my-5" style="max-width:500px;margin:auto;">
+                    Historical and projected climate conditions for your home,
+                    and how your current MP acts on climate policies
+                </p>
+
+
+                <form action="./data-overview" method="get" style="max-width:700px;margin:auto;">
+                    <input type="text" id="address-search" name="address" placeholder="Enter a NSW street address."
+                        data-api-url="<%= hostURL %>" data-api-key="<%= dbSearchKey %>">
+                    <input id='get-address' class="btn btn-primary my-2" type="submit" value="Submit">
+                </form>
+
+
+
+            </div>
+    </main>
+
+    <footer>
+        <%- include('partials/footer'); %>
+    </footer>
+
+    <script>
+
+        selectizeAddress('#address-search');
+
+    </script>
+
+</body>
+
+</html>

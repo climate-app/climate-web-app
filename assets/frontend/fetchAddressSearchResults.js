@@ -1,0 +1,35 @@
+function fetchAddressSearchResults(host, key, query, callback) {
+
+    const url = `${host}/address/indexes/addresses/search`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+        },
+        body: JSON.stringify({
+            q: query,  // The user's query
+            limit: 10  // Limit the results to the top 10 suggestions
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Format the results in a way that Selectize can consume
+            const results = data.hits.map(hit => {
+                //return hit
+                return {
+                    id: hit.id,       // Unique identifier
+                    name: joinAddressColumns(hit)    // Field to display as the suggestion
+                };
+            });
+
+            //console.log(results)
+
+            callback(results); // Pass the results back to Selectize
+        })
+        .catch(error => {
+            console.error('Error fetching results from Meilisearch:', error);
+            callback(); // In case of error, provide an empty callback
+        });
+}

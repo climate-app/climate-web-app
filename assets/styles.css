@@ -1,0 +1,57 @@
+html {
+    overflow: hidden;
+    /* Disables scrolling completely */
+}
+
+body {
+    overflow: auto;
+    /* Enables scrolling on the body */
+    scrollbar-width: none;
+    /* Hides scrollbar in Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* Hides scrollbar in Webkit-based browsers */
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(255, 255, 255, .50)), url('images/cloud-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.main-home {
+    height: calc(100vh - 72px);
+}
+
+.bg-trans {
+    background: rgba(255, 255, 255, 0.125);
+}
+
+.selectize-input, .selectize-input.dropdown-active, .selectize-dropdown {
+    border-radius: 0;
+    border: unset;
+}
+
+.selectize-dropdown .active {
+    background: var(--bs-success);
+}
+
+.selectize-dropdown .active:not(.selected) {
+    background: var(--bs-primary);
+    color: white;
+}
+
+.accordion-button:after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}

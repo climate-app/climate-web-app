@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+    <script src="../functions/frontend/dataOverviewChartjs.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="meme" style="height:300px;width: 500px;display: none;">
+        <canvas id="overview-chartjs"></canvas>
+    </div>
+    <button id="show">Show</button>
+    <script>
+        document.getElementById('show').addEventListener('click', function(){
+            document.getElementById('meme').style.display = 'block'
+        })
+        makeDataOverviewChartjs('overview-chartjs', [[{ year: 1000, value: 1 }, { year: 1001, value: 3 }, { year: 1002, value: 2 }], [{ year: 1005, value: 3 }, { year: 1006, value: 4 }, { year: 1007, value: 5 }]])
+    </script>
+</body>
+
+</html>
