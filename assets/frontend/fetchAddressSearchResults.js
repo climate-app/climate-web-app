@@ -20,7 +20,8 @@ function fetchAddressSearchResults(host, key, query, callback) {
                 //return hit
                 return {
                     id: hit.id,       // Unique identifier
-                    name: joinAddressColumns(hit)    // Field to display as the suggestion
+                    name: hit.ADDRESS_LABEL // full string
+                    //name: joinAddressColumns(hit) // address in columns
                 };
             });
 
