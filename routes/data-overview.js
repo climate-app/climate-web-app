@@ -48,32 +48,38 @@ dataOverview.get('/', (req, res) => {
     tempThreshAnnualObs: iwio.getAnnualThresholdObservations({ ...pObs, variable: 'tmax', threshold: pHot.threshold, operator: pHot.operator }),
     tempThreshAnnualProj45: iwio.getAnnualThresholdProjections({ ...pProj, variable: 'tmax', emission: 'rcp45', threshold: pHot.threshold, operator: pHot.operator }),
     tempThreshAnnualProj85: iwio.getAnnualThresholdProjections({ ...pProj, variable: 'tmax', emission: 'rcp85', threshold: pHot.threshold, operator: pHot.operator }),
-    rainAnnualObs: iwio.getAnnualObservations({ ...pObs, variable: 'precip' }),
+    /*rainAnnualObs: iwio.getAnnualObservations({ ...pObs, variable: 'precip' }),
     rainAnnualProj45: iwio.getAnnualProjections({ ...pProj, variable: 'precip', emission: 'rcp45' }),
     rainAnnualProj85: iwio.getAnnualProjections({ ...pProj, variable: 'precip', emission: 'rcp85' }),
     ffdiAnnualObs: iwio.getAnnualFFDIObservations({ ...pObs, threshold: ffdi.threshold }),
     ffdiAnnualProj45: iwio.getAnnualFFDIProjections({ ...pProj, emission: 'rcp45', threshold: ffdi.threshold }),
-    ffdiAnnualProj85: iwio.getAnnualFFDIProjections({ ...pProj, emission: 'rcp85', threshold: ffdi.threshold }),
+    ffdiAnnualProj85: iwio.getAnnualFFDIProjections({ ...pProj, emission: 'rcp85', threshold: ffdi.threshold })*/
   }
 
   // Create data objects and send to front end
   Promise.all(Object.values(envData))
     .then(resolvedPromises => {
 
+      //[{data: ...}, {data: ...}]
+      //console.log(resolvedPromises[0].data)
+
       // Map the results back to an object using the original keys
+      //[tempAnnualObs: {data: ...}, tempAnnualProj45: {data: ...}]
       const iwData = iww.mapPromisesToKeys(Object.keys(envData), resolvedPromises)
+   
 
       // Join emission scenario here
       iwData.tempAnnualProj = [iwData.tempAnnualProj45, iwData.tempAnnualProj85]
       iwData.tempThreshAnnualProj = [iwData.tempThreshAnnualProj45, iwData.tempThreshAnnualProj85]
-      iwData.rainAnnualProj = [iwData.rainAnnualProj45, iwData.rainAnnualProj85]
-      iwData.ffdiAnnualProj = [iwData.ffdiAnnualProj45, iwData.ffdiAnnualProj85]
+      //iwData.rainAnnualProj = [iwData.rainAnnualProj45, iwData.rainAnnualProj85]
+      //iwData.ffdiAnnualProj = [iwData.ffdiAnnualProj45, iwData.ffdiAnnualProj85]
+
 
       // Generate data elements
       let tempAnnual = iww.createDataOverviewBoxData('Annual Temperature', '°C', iwData.tempAnnualObs, iwData.tempAnnualProj)
       let tempThreshAnnual = iww.createDataOverviewBoxData('Annual Hot Days (above 35 °C)', 'days', iwData.tempThreshAnnualObs, iwData.tempThreshAnnualProj)
-      let rainAnnual = iww.createDataOverviewBoxData('Annual Rain', 'mm', iwData.rainAnnualObs, iwData.rainAnnualProj)
-      let ffdiAnnual = iww.createDataOverviewBoxData("Forest Fire Danger Index (above 'Very High')", 'days', iwData.ffdiAnnualObs, iwData.ffdiAnnualProj)
+      //let rainAnnual = iww.createDataOverviewBoxData('Annual Rain', 'mm', iwData.rainAnnualObs, iwData.rainAnnualProj)
+      //let ffdiAnnual = iww.createDataOverviewBoxData("Forest Fire Danger Index (above 'Very High')", 'days', iwData.ffdiAnnualObs, iwData.ffdiAnnualProj)
 
       let mpData = getMPJson(addressMetadata.MP_ID)
 
@@ -82,12 +88,13 @@ dataOverview.get('/', (req, res) => {
       let renderData = {
         homeURL: homeURL,
         addressMetadata: addressMetadata,
-        data: [tempAnnual, tempThreshAnnual, rainAnnual, ffdiAnnual],
+        //data: [tempAnnual, tempThreshAnnual, rainAnnual, ffdiAnnual],
+        data: [tempAnnual, tempThreshAnnual],
         mpData: mpData
       }
 
       // render
-      res.render("data-overview-report", renderData)
+      res.render("data-overview", renderData)
     })
     .catch(error => {
       console.error("Error in promises:", error);

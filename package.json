@@ -8,7 +8,7 @@
     "start": "yarn concat && yarn minify && node server.js",
     "startDev": "nodemon --ignore public/ --ignore assets/tmp --ext js,mjs,cjs,json,css --exec \"yarn concat && yarn minify && node server.js\"",
     "concat": "node ./assets/backend/concatFrontendFunctions.js",
-    "minify": "minify ./assets/tmp/frontend-functions.js > ./public/frontend-functions.js && minify ./assets/styles.css > ./public/styles.min.css",
+    "minify": "minify ./assets/tmp/frontend-functions.js > ./public/frontend-functions.min.js && minify ./assets/styles.css > ./public/styles.min.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

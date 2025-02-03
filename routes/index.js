@@ -10,8 +10,7 @@ index.get('/', (req, res) => {
     'index',
     {
       homeURL: req.config.home,
-      hostURL: req.config.host,
-      dbSearchKey: req.config.dbSearchKey
+      hostURL: req.config.host
     }
   );
 })

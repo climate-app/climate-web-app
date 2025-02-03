@@ -1,8 +1,8 @@
-function selectizeAddress(id) {
+async   function selectizeAddress(id) {
 
     let idData = document.querySelector(id).dataset
     let host = idData.apiUrl
-    let key = idData.apiKey
+    let key = await getMeiliKey();
 
     $(id).selectize({
         valueField: 'id',    // The field from the Meilisearch results to use as the value

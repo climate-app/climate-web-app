@@ -1,15 +1,22 @@
 import 'dotenv/config';
-//import AnnualObservationsExample from '../../data/AnnualObservationsExample.json' assert { type: 'json' }
-//import AnnualProjectionsExample from '../../data/AnnualProjectionsExample.json' assert { type: 'json' }
-//import AnnualThresholdObservationsExample from '../../data/AnnualThresholdObservationsExample.json' assert { type: 'json' }
-//import AnnualThresholdProjectionsExample from '../../data/AnnualThresholdProjectionsExample.json' assert { type: 'json' }
+
+let isTesting = process.env.USETESTDATA
 
 const apiConfig = {
     host: "https://dev.indraweb.io",
     apiKey: process.env.INDRAKEY
 };
 
-const indrawebApiCall = async (endpoint, queryParams = {}, options = {}) => {
+const indrawebApiCall = async (endpoint, queryParams = {}, options = {}, testMode = isTesting) => {
+
+    if (testMode) {
+        let fileId = endpoint.split('/').slice(-1)
+        const response = await fetch(`http://localhost:8081/testjsons/${fileId}`);
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+        return await response.json();
+    }
 
     // Construct the query string from the queryParams object
     const queryString = new URLSearchParams(queryParams).toString();
@@ -40,86 +47,41 @@ const indrawebApiCall = async (endpoint, queryParams = {}, options = {}) => {
     }
 };
 
-function testWith(data, timeout) {
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, timeout, data);
-    })
-}
 
 //const getAnnualObservations = async (queryParams) => {
-async function getAnnualObservations(queryParams, test = false) {
+async function getAnnualObservations(queryParams) {
     let endpoint = "observations/timeslice/annual/getAnnualObservations"
     // c('lon', 'lat','variable', 'startYear', 'endYear')  
-
-    if (test) {
-        console.log('testing getAnnualObservations')
-        return testWith(AnnualObservationsExample, 1500);
-    }
-
     return indrawebApiCall(endpoint, queryParams);
-
 }
 
-async function getAnnualProjections(queryParams, test = false) {
+async function getAnnualProjections(queryParams) {
     let endpoint = "projections/timeslice/annual/getAnnualProjections"
     //c('lon', 'lat','variable', 'years', 'emission')
-
-    if (test) {
-        console.log('testing with AnnualProjectionsExample')
-        return testWith(AnnualProjectionsExample, 1000)
-    }
-
     return indrawebApiCall(endpoint, queryParams);
-
 }
 
-async function getAnnualThresholdObservations(queryParams, test = false) {
+async function getAnnualThresholdObservations(queryParams) {
     let endpoint = "observations/threshold/annual/getAnnualThresholdObservations"
-    //required_params <-
     //  c('lon', 'lat','variable', 'startYear', 'endYear', 'threshold', 'operator')
-
-    if (test) {
-        console.log('testing with AnnualThresholdObservationsExample')
-        return testWith(AnnualThresholdObservationsExample, 1100)
-    }
-
     return indrawebApiCall(endpoint, queryParams);
 }
 
-async function getAnnualThresholdProjections(queryParams, test = false) {
+async function getAnnualThresholdProjections(queryParams) {
     let endpoint = "projections/threshold/annual/getAnnualThresholdProjections"
     //c('lon', 'lat','variable', 'years', 'emission', 'threshold', 'operator')
-
-    if (test) {
-        console.log('testing with AnnualThresholdProjectionsExample')
-        return testWith(AnnualThresholdProjectionsExample, 900)
-    }
-
     return indrawebApiCall(endpoint, queryParams);
 }
 
-async function getAnnualFFDIObservations(queryParams, test = false) {
-
+async function getAnnualFFDIObservations(queryParams, test = isTesting) {
     let endpoint = "observations/ffdi/annual/getAnnualFFDI"
     //c('lon', 'lat', 'startYear', 'endYear', 'threshold')
-
-    if (test) {
-        console.log('No test data!')
-        return [{data: null}]
-    }
-
     return indrawebApiCall(endpoint, queryParams);
 }
 
-async function getAnnualFFDIProjections(queryParams, test = false) {
+async function getAnnualFFDIProjections(queryParams, test = isTesting) {
     let endpoint = "projections/ffdi/annual/getAnnualFFDIProjections"
-    //c('lon', 'lat', 'years', 'emission', 'threshold',)
-
-    if (test) {
-        console.log('No test data!')
-        return [{data: null}]
-    }
-
+    //c('lon', 'lat', 'years', 'emission', 'threshold')
     return indrawebApiCall(endpoint, queryParams);
 }
 
