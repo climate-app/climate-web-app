@@ -52,7 +52,4 @@ app.listen(PORT, () => {
     if (process.env.USETESTDATA){
         console.log('In TESTING mode: using test data in ./data/test-data and not indraweb api')
     }
-
 })
-
-// poo
