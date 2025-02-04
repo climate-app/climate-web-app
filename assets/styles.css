@@ -60,3 +60,8 @@ main {
     width: 100%;
     max-width: 800px;
 }
+
+.v-margins-30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
