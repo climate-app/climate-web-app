@@ -24,6 +24,7 @@ import { index } from './routes/index.js';
 import { dataOverview } from './routes/data-overview.js';
 import { otherPage } from './routes/other-page.js';
 import { about } from './routes/about.js';
+import { info } from './routes/info.js';
 import { route as meilisearchKey } from "./routes/meilisearch-api-key.js"
 import { route as testJsons } from "./routes/test-jsons.js"
 
@@ -44,6 +45,7 @@ app.use('/', index)
 app.use('/data-overview', dataOverview)
 app.use('/other-page', otherPage)
 app.use('/about', about)
+app.use('/info', info)
 app.use('/meilikey', meilisearchKey)
 app.use('/testjsons', testJsons)
 
