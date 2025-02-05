@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- 
+Testing dataOverviewChartjs.js
+
+Run live server with this document
+
+- d3, chartjs and dataOverviewChartjs.js included in head
+- Has 'Show' button to observe the animation as seen in the app
+
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"
+        integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
-    <script src="../functions/frontend/dataOverviewChartjs.js"></script>
+    <script src="../assets/frontend/dataOverviewChartjs.js"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <p>Includes the 'Show' button to observe the animation as seen in the app</p>
     <div id="meme" style="height:300px;width: 500px;display: none;">
         <canvas id="overview-chartjs"></canvas>
     </div>
     <button id="show">Show</button>
     <script>
-        document.getElementById('show').addEventListener('click', function(){
+
+        document.getElementById('show').addEventListener('click', function () {
             document.getElementById('meme').style.display = 'block'
         })
-        makeDataOverviewChartjs('overview-chartjs', [[{ year: 1000, value: 1 }, { year: 1001, value: 3 }, { year: 1002, value: 2 }], [{ year: 1005, value: 3 }, { year: 1006, value: 4 }, { year: 1007, value: 5 }]])
+
+        function generateYearValueDate(startYear, endYear) {
+            const data = [];
+
+            for (let year = startYear; year <= endYear; year++) {
+                const lambda = 5;
+                const value = Math.round(d3.randomNormal(lambda, Math.sqrt(lambda))());
+                data.push({ year: year, value: value });
+            }
+
+            return data;
+        }
+
+        let data =
+            [
+                generateYearValueDate(2000, 2020),
+                generateYearValueDate(2020, 2030),
+                generateYearValueDate(2030, 2040)
+            ]
+
+
+        makeDataOverviewChartjs('overview-chartjs', data)
     </script>
 </body>
 

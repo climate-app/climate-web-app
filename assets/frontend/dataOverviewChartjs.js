@@ -1,10 +1,16 @@
+/**
+ * 
+ * @param {string} id element to start the chartjs instance 
+ * @param {*} data array of data [[{ year: 1000, value: 1 }], [{ year: 1000, value: 1 }]]
+ */
 function makeDataOverviewChartjs(id, data) {
 
     const ctx = document.getElementById(id).getContext('2d');
 
-    // data is [[],[]]
     labels = ['Historial', 'Low emissions (RCP 4.5)', 'High emissions (RCP 8.5)']
     colors = ["#18bc9c", "#f39c12", '#e74c3c'] // bootrap flatly colors
+
+     // data is [[],[]]
     const datasets = data.map((v, i) => {
         let dataset = {
             label: labels[i],
