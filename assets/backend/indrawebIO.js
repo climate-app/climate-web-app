@@ -10,7 +10,14 @@ const apiConfig = {
 const indrawebApiCall = async (endpoint, queryParams = {}, options = {}, testMode = isTesting) => {
 
     if (testMode) {
+
         let fileId = endpoint.split('/').slice(-1)
+        let hasRCP = 'emission' in queryParams
+
+        if (hasRCP) {
+           fileId = `${fileId}-${queryParams.emission}`
+        }
+        
         const response = await fetch(`http://localhost:8081/testjsons/${fileId}`);
         if (!response.ok) {
             throw new Error(`API request failed with status ${response.status}`);
@@ -73,13 +80,13 @@ async function getAnnualThresholdProjections(queryParams) {
     return indrawebApiCall(endpoint, queryParams);
 }
 
-async function getAnnualFFDIObservations(queryParams, test = isTesting) {
+async function getAnnualFFDIObservations(queryParams) {
     let endpoint = "observations/ffdi/annual/getAnnualFFDI"
     //c('lon', 'lat', 'startYear', 'endYear', 'threshold')
     return indrawebApiCall(endpoint, queryParams);
 }
 
-async function getAnnualFFDIProjections(queryParams, test = isTesting) {
+async function getAnnualFFDIProjections(queryParams) {
     let endpoint = "projections/ffdi/annual/getAnnualFFDIProjections"
     //c('lon', 'lat', 'years', 'emission', 'threshold')
     return indrawebApiCall(endpoint, queryParams);
