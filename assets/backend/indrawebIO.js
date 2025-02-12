@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-let isTesting = process.env.USETESTDATA
+let isTesting = process.env.USETESTDATA == 'true'
 
 const apiConfig = {
     host: "https://dev.indraweb.io",

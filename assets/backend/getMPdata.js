@@ -41,10 +41,11 @@ export function getMPJson(id) {
             return acc;
         }, {});
 
-        mpData.policy_comparisons = Object.keys(mpData.policy_comparisons).map(e => {
+        mpData.policy_comparisons = Object.keys(mpData.policy_comparisons).map((e,i) => {
             return {
-                title: voteBinTitles[e],
-                policy_comparisons: mpData.policy_comparisons[e]
+                title: voteBinTitles[e],                
+                policy_comparisons: mpData.policy_comparisons[e],
+                voteBin: i
             }
         })
 

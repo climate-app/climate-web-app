@@ -3,6 +3,8 @@ import 'dotenv/config';
 import express from 'express';
 
 // Environment set up
+let isTesting = process.env.USETESTDATA == 'true'
+
 let homeURL, hostURL, PORT
 
 if (process.env.ENV == 'prod') {
@@ -62,7 +64,7 @@ app.use('/testjsons', testJsons)
 
 app.listen(PORT, () => {
     console.log(`Server started at localhost:${PORT}`)
-    if (process.env.USETESTDATA) {
+    if (isTesting) {
         console.log('In TESTING mode: using test data in ./data/test-data and not indraweb api')
     }
 })
