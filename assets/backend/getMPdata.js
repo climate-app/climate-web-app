@@ -3,6 +3,7 @@ import path from 'path';
 
 export function getMPJson(id) {
 
+    // Like this for cross platform OS
     const filePath = path.join('data', 'theyvoteforyou', 'persons', `person-${id}.json`);
 
     try {
@@ -41,10 +42,11 @@ export function getMPJson(id) {
             return acc;
         }, {});
 
-        mpData.policy_comparisons = Object.keys(mpData.policy_comparisons).map(e => {
+        mpData.policy_comparisons = Object.keys(mpData.policy_comparisons).map((e,i) => {
             return {
-                title: voteBinTitles[e],
-                policy_comparisons: mpData.policy_comparisons[e]
+                title: voteBinTitles[e],                
+                policy_comparisons: mpData.policy_comparisons[e],
+                voteBin: i
             }
         })
 

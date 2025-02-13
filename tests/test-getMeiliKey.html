@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+Testing getMeiliKey
+
+Run live server with this document with app running in background
+
+- Wont work because of CORS
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add required scripts and libraries here -->
+    <script src="../assets/frontend/getMeiliKey.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="key"></span>
+    <script>
+
+        let el = document.getElementById('key')
+        getMeiliKey('http://localhost:8081').then(v => {
+            el.innerText = v
+            console.log(v)
+        })
+
+    </script>
+</body>
+
+</html>

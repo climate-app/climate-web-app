@@ -1,22 +1,28 @@
-<div class="py-2">
-    <h5><%= title %></h5>
-    <% policy_comparisons.forEach((v,i)=> { %>
-        <div class="accordion accordion-flush my-1" id="policy-table-<%= i %>">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <% let bg=v.agreement> 50 ? 'bg-success': 'bg-danger' %>
-                        <button class="accordion-button collapsed text-white <%= bg %>" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#flush-<%= i %>" aria-expanded="false"
-                            aria-controls="flush-<%= i %>">
-                            <%= v.policy.name %>
-                        </button>
-                </h2>
-                <div id="flush-<%= i %>" class="accordion-collapse collapse" data-bs-parent="#policy-table-<%= i %>">
-                    <div class="accordion-body">
-                        <%= v.policy.description %>
+<%# { title: 'Voted consistently against' , policy_comparisons: [Array], voteBin: 6 } %>
+    <div class="py-2">
+        <h5>
+            <%= title %>
+        </h5>
+
+        <div class="accordion accordion-flush policy-table" id="policy-table-<%= voteBin %>">
+            <% policy_comparisons.forEach((v,i)=> { %>
+                <div class="accordion-item my-1" style="border: none;">
+                    <h2 class="accordion-header">
+                        <% let bg=v.agreement> 50 ? 'bg-success': 'bg-danger' %>
+                            <button class="accordion-button collapsed text-white <%= bg %>" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-<%= voteBin %>-<%= i %>"
+                                aria-expanded="false" aria-controls="flush-<%= i %>">
+                                <%= v.policy.name %>
+                            </button>
+                    </h2>
+                    <div id="flush-<%= voteBin %>-<%= i %>" class="accordion-collapse collapse"
+                        data-bs-parent="#policy-table-<%= voteBin %>-<%= i %>">
+                        <div class="accordion-body">
+                            <%= v.policy.description %>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <% }) %>
         </div>
-        <% }) %>
-</div>
+
+    </div>
