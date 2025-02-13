@@ -3,10 +3,12 @@ import os from 'node:os'
 import path from "node:path"
 
 export function getAddressMetadata(id) {
+    
+    //const filePath = path.join('data', 'address-id-coordinates-mp-id.csv');
+    const filePath = path.join('data', 'address-id-coordinates-mp-id-gnaf-core-columns.csv');
 
     const platform = os.platform();
-    const filePath = path.join('data', 'address-id-coordinates-mp-id.csv');
-
+    
     const execCommand = platform === 'win32'
         ? `findstr "${id}" "${filePath}"`
         : `grep "${id}" "${filePath}"`;

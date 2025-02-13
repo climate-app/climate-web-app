@@ -1,4 +1,4 @@
-async   function selectizeAddress(id) {
+async function selectizeAddress(id) {
 
     let idData = document.querySelector(id).dataset
     let host = idData.apiUrl
@@ -9,16 +9,30 @@ async   function selectizeAddress(id) {
         labelField: 'name',  // The field to display in the dropdown
         searchField: 'name', // The field to search in Meilisearch
         maxOptions: 10,      // limit max options shown (limited at 10 in Meilisearch)
-        loadThrottle: 300,  // How long to wait before searching
+        loadThrottle: 400,  // How long to wait before searching
         maxItems: 1,
         closeAfterSelect: true,
         load: function (query, callback) {
-            if (!query.length) return callback();
             // Clear the existing options before making a new request
             this.clearOptions();
+
+            // If text box is clear, close options
+            if (!query.length) {
+                this.close();
+                return;
+            }
+            
+            //this.clearOptions();
             fetchAddressSearchResults(host, key, query, callback);
         },
+        onType: function(str){
+            if (!str.length){
+                this.clearOptions();
+                this.close();
+            }
+        },
         onDelete: function () {
+            // only when a selection is made then deleted
             this.clearOptions();
         },
         sortField: null,

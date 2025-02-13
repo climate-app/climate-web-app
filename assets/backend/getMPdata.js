@@ -3,6 +3,7 @@ import path from 'path';
 
 export function getMPJson(id) {
 
+    // Like this for cross platform OS
     const filePath = path.join('data', 'theyvoteforyou', 'persons', `person-${id}.json`);
 
     try {

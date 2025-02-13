@@ -1,6 +1,6 @@
 function fetchAddressSearchResults(host, key, query, callback) {
 
-    const url = `${host}/address/indexes/addresses/search`;
+    const url = `${host}/address/indexes/addresses2/search`;
 
     fetch(url, {
         method: 'POST',
@@ -20,8 +20,8 @@ function fetchAddressSearchResults(host, key, query, callback) {
                 //return hit
                 return {
                     id: hit.id,       // Unique identifier
-                    name: hit.ADDRESS_LABEL // full string
-                    //name: joinAddressColumns(hit) // address in columns
+                    //name: hit.ADDRESS_LABEL // full string
+                    name: joinAddressColumns(hit) // address in columns
                 };
             });
 

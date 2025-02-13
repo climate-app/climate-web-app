@@ -2,3 +2,5 @@
 node_modules/
 package-lock.json
 *.excalidraw
+test-meiliserch-js.html
+Setup-notes.txt
