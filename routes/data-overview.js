@@ -7,8 +7,6 @@ import { getMPJson } from '../assets/backend/getMPdata.js';
 
 export const dataOverview = express.Router()
 
-let homeURL = process.env.ENV == 'dev' ? process.env.HOME : ''
-
 // define the home page route
 dataOverview.get('/', (req, res) => {
 
@@ -92,7 +90,8 @@ dataOverview.get('/', (req, res) => {
 
       // create ejs data
       let renderData = {
-        homeURL: homeURL,
+        homeURL: req.config.home,
+        hostURL: req.config.host,
         addressMetadata: addressMetadata,
         //data: [tempAnnual, tempThreshAnnual, rainAnnual, ffdiAnnual],
         data: [tempAnnual, tempThreshAnnual, ffdiAnnual],
