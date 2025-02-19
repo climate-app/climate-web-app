@@ -38,7 +38,7 @@ USETESTDATA=false  # use test data instead of indra API
 
 Should have
 
- - `address-id-coordinates-mp-id-gnaf-core-columns.csv` - from [https://github.com/climate-app/adddress-gnaf-ced-mp-data-wrangling](adddress-gnaf-ced-mp-data-wrangling repo)
+ - `address-id-coordinates-mp-id-gnaf-core-columns.csv` - from [adddress-gnaf-ced-mp-data-wrangling repo](https://github.com/climate-app/adddress-gnaf-ced-mp-data-wrangling)
  - `theyvoteforyou/persons/*.json` - MP persons jsons from https://theyvoteforyou.org.au/
 
 ### Build
