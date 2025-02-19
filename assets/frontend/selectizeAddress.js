@@ -1,7 +1,6 @@
 async function selectizeAddress(id) {
 
     let idData = document.querySelector(id).dataset
-    let host = idData.apiUrl
     let key = await getMeiliKey();
 
     $(id).selectize({
@@ -23,7 +22,7 @@ async function selectizeAddress(id) {
             }
             
             //this.clearOptions();
-            fetchAddressSearchResults(host, key, query, callback);
+            fetchAddressSearchResults(key, query, callback);
         },
         onType: function(str){
             if (!str.length){

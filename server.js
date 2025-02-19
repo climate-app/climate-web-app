@@ -5,19 +5,14 @@ import express from 'express';
 // Environment set up
 let isTesting = process.env.USETESTDATA == 'true'
 
-let homeURL, hostURL, PORT
+let PORT;
 
 if (process.env.ENV == 'prod') {
-    homeURL = process.env.HOMEPROD
-    hostURL = process.env.HOSTPROD
     PORT = process.env.PORTPROD;
 
 }
 
 if (process.env.ENV == 'dev') {
-    //concatFrontendJS();
-    homeURL = process.env.HOMEDEV
-    hostURL = process.env.HOSTDEV
     PORT = process.env.PORTDEV;
 }
 
@@ -37,13 +32,10 @@ let allowCrossDomain = function (req, res, next) {
     next();
 }
 
-let includeConfigObj = function (req, res, next) {
-    req.config = {
-        host: hostURL,
-        home: homeURL
-    }
-    next();
-}
+// let includeConfigObj = function (req, res, next) {
+//     req.config = {}
+//     next();
+// }
 
 // App
 const app = express();
@@ -55,7 +47,7 @@ if (process.env.ENV == 'dev') {
 }
 
 
-app.use(includeConfigObj)
+//app.use(includeConfigObj)
 app.use('/', index)
 app.use('/data-overview', dataOverview)
 app.use('/other-page', otherPage)

@@ -1,5 +1,6 @@
-function fetchAddressSearchResults(host, key, query, callback) {
+function fetchAddressSearchResults(key, query, callback) {
 
+    const host = 'https://www.myclimate.com.au'
     const url = `${host}/address/indexes/addresses2/search`;
 
     fetch(url, {
