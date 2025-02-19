@@ -3,13 +3,13 @@
 
 <head>
     <%- include('partials/head-index') %>
-    <%- include('partials/head-data-overview') %>
+    <%- include('data-overview/head-data-overview') %>
 </head>
 
 <body>
 
     <header class="border-bottom border-white">
-        <%- include('partials/navbar', {homeURL: homeURL}); %>
+        <%- include('partials/navbar'); %>
     </header>
 
     <style>
@@ -29,7 +29,7 @@
         <div class="p-2">
             <h3>Data Overview Report</h3>
 
-            <a href="/<%= homeURL %>" class="btn btn-primary">Go back</a>
+            <a href="/" class="btn btn-primary">Go back</a>
 
             <div>
                 <div class="row">
@@ -166,13 +166,13 @@
             <h4> Temperature </h4>
             <% data.forEach((row, i)=> { %>
                 <% row.index=i %>
-                    <%- include('partials/dataOverviewValues', row) %>
+                    <%- include('data-overview/data-overview-values', row) %>
                         <% }); %>
         </div>
 
         <div id="poli-vars" class="p-2">
             <h4> Politics </h4>
-            <%- include('partials/mpOverviewSection', mpData) %>
+            <%- include('data-overview/mp-overview-section', mpData) %>
         </div>
 
     </main>

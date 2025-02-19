@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "yarn concat && yarn minify && node server.js",
-    "startDev": "nodemon --ignore public/ --ignore assets/tmp --ext js,mjs,cjs,json,css --exec \"yarn concat && yarn minify && node server.js\"",
-    "concat": "node ./assets/backend/concatFrontendFunctions.js",
-    "minify": "minify ./assets/tmp/frontend-functions.js > ./public/frontend-functions.min.js && minify ./assets/styles.css > ./public/styles.min.css",
+    "startDev": "nodemon --ignore public/ --ignore frontend-assets/tmp --ext js,mjs,cjs,json,css --exec \"yarn concat && yarn minify && node server.js\"",
+    "concat": "node ./backend-functions/concatFrontendFunctions.js",
+    "minify": "minify ./frontend-assets/tmp/frontend-functions.js > ./public/frontend-functions.min.js && minify ./frontend-assets/styles.css > ./public/styles.min.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

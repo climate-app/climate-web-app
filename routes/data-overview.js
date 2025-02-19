@@ -1,9 +1,9 @@
 import express from 'express';
 import * as d3 from "d3";
-import { getAddressMetadata } from '../assets/backend/getAddressMetadata.js'
-import { iwio } from '../assets/backend/indrawebIO.js';
-import { iww } from '../assets/backend/indrawebWrangle.js';
-import { getMPJson } from '../assets/backend/getMPdata.js';
+import { getAddressMetadata } from '../backend-functions/getAddressMetadata.js'
+import { iwio } from '../backend-functions/indrawebIO.js';
+import { iww } from '../backend-functions/indrawebWrangle.js';
+import { getMPJson } from '../backend-functions/getMPdata.js';
 
 export const dataOverview = express.Router()
 
@@ -90,8 +90,6 @@ dataOverview.get('/', (req, res) => {
 
       // create ejs data
       let renderData = {
-        homeURL: req.config.home,
-        hostURL: req.config.host,
         addressMetadata: addressMetadata,
         //data: [tempAnnual, tempThreshAnnual, rainAnnual, ffdiAnnual],
         data: [tempAnnual, tempThreshAnnual, ffdiAnnual],
