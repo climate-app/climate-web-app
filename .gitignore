@@ -4,3 +4,4 @@ package-lock.json
 *.excalidraw
 test-meiliserch-js.html
 Setup-notes.txt
+.DS_Store
