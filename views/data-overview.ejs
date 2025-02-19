@@ -3,30 +3,20 @@
 
 <head>
     <%- include('partials/head-index') %>
-    <%- include('data-overview/head-data-overview') %>
+        <%- include('data-overview/head-data-overview') %>
 </head>
 
 <body>
+
+    <!-- Are comments included ? -->
 
     <header class="border-bottom border-white">
         <%- include('partials/navbar'); %>
     </header>
 
-    <style>
-        @media only screen and (max-width: 576px) {
-            .overview-text {
-                text-align: left;
-            }
-
-            .overview-value {
-                text-align: right;
-            }
-        }
-    </style>
-
     <main>
 
-        <div class="p-2">
+        <div id='report-top' class="p-2">
             <h3>Data Overview Report</h3>
 
             <a href="/" class="btn btn-primary">Go back</a>
@@ -38,9 +28,14 @@
                         </p>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div id="map" style="height:256px;width:100%;"></div>
+                        <div id="location-map" style="height:256px;width:100%;"></div>
                     </div>
                 </div>
+
+                <script>
+                    showLocationMap("location-map", '<%=addressMetadata.LATITUDE %>', '<%=addressMetadata.LONGITUDE %>')
+                </script>
+
             </div>
 
             <div>
@@ -57,117 +52,19 @@
 
                     </div>
                 </div>
+                <script>addEmissionToggleToButtons()</script>
             </div>
 
             <div>
                 <h4>Summary</h4>
-                <ul class='ul-summary'>
-                    <% data.forEach((row, i)=> { %>
-                        <li class="bg-primary p-2 my-1">
-                            <span>
-                                <%= row.name%>
-                            </span>
-                            <strong class="text-end">
-                                <span class="rcp45">
-                                    <%= row.change45%>
-                                </span>
-                                <span class="rcp85" style="display: none;">
-                                    <%= row.change85 %>
-                                </span>
-                                <%= row.units %>
-                            </strong>
-                        </li>
-                        <% }); %>
-                </ul>
-
-                <style>
-                    .ul-summary {
-                        list-style-type: none;
-                        margin: 0;
-                        padding: 0;
-                        white-space: nowrap;
-                    }
-
-                    .ul-summary>li {
-                        display: flex;
-                        flex-direction: row;
-                    }
-
-                    .ul-summary>li>* {
-                        width: 100%;
-                    }
-                </style>
-
+                <%- include('data-overview/summary-section', data ); %>
             </div>
-
         </div>
 
-        <script>
-
-            let emissionBtns = [...document.getElementById('emission-selector').getElementsByTagName('input')]
-
-
-            emissionBtns.forEach(radioButton => {
-                radioButton.addEventListener('change', () => {
-
-                    // Handle the selected option here
-                    const selectedOption = document.getElementById('emission-selector').querySelector('input:checked').id;
-
-                    // Perform actions based on the selected option
-                    if (selectedOption === 'btn-rcp45') {
-                        $('.rcp85').fadeToggle(400, 'swing').promise().done(function () {
-                            $('.rcp45').fadeToggle(400, 'swing')
-                        })
-
-                    }
-
-                    if (selectedOption === 'btn-rcp85') {
-                        // $('.rcp45').fadeToggle(400, 'swing', function(){ $('.rcp85').fadeToggle(400, 'swing')})
-                        $('.rcp45').fadeToggle(400, 'swing').promise().done(function () {
-                            $('.rcp85').fadeToggle(400, 'swing')
-                        })
-                    }
-                });
-            });
-
-
-            let map =
-                L.map('map', {
-                    zoomControl: true,
-                    attributionControl: false,
-                    boxZoom: false,
-                    doubleClickZoom: false,
-                    dragging: false,
-                    keyboard: false,
-                    //scrollWheelZoom: 'center',
-                    scrollWheelZoom: false,
-                    touchZoom: 'center',
-                    minZoom: 7,
-                    zoom: 18,
-                    center: [<%=addressMetadata.LATITUDE %>, <%=addressMetadata.LONGITUDE %>]
-                })
-
-            L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg').addTo(map)
-
-            var marker =
-                L.marker([ <%=addressMetadata.LATITUDE %>, <%=addressMetadata.LONGITUDE %> ], {
-                    icon: L.icon({
-                        iconUrl: 'images/marker-icon-red.png', //https://github.com/pointhi/leaflet-color-markers
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    })
-
-                }).addTo(map);
-        </script>
 
         <div id="env-vars" class="p-2">
-            <h4> Temperature </h4>
-            <% data.forEach((row, i)=> { %>
-                <% row.index=i %>
-                    <%- include('data-overview/data-overview-values', row) %>
-                        <% }); %>
+            <h4> Environmental parameters </h4>
+            <%- include('data-overview/environmental-parameter-section', data); %>
         </div>
 
         <div id="poli-vars" class="p-2">

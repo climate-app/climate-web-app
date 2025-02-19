@@ -1,0 +1,36 @@
+<ul class='ul-summary'>
+    <% data.forEach((row, i)=> { %>
+        <li class="bg-primary p-2 my-1">
+            <span>
+                <%= row.name%>
+            </span>
+            <strong class="text-end">
+                <span class="rcp45">
+                    <%= row.change45%>
+                </span>
+                <span class="rcp85" style="display: none;">
+                    <%= row.change85 %>
+                </span>
+                <%= row.units %>
+            </strong>
+        </li>
+        <% }); %>
+</ul>
+
+<style>
+    .ul-summary {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    .ul-summary>li {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .ul-summary>li>* {
+        width: 100%;
+    }
+</style>

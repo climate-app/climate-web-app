@@ -1,20 +1,12 @@
 
 import 'dotenv/config';
 import express from 'express';
+import minifyHTML from 'express-minify-html-2'
 
 // Environment set up
 let isTesting = process.env.USETESTDATA == 'true'
 
-let PORT;
-
-if (process.env.ENV == 'prod') {
-    PORT = process.env.PORTPROD;
-
-}
-
-if (process.env.ENV == 'dev') {
-    PORT = process.env.PORTDEV;
-}
+let PORT = process.env.ENV == 'prod' ? process.env.PORTPROD : process.env.PORTDEV
 
 // Routes/Pages 
 import { index } from './routes/index.js';
@@ -32,22 +24,31 @@ let allowCrossDomain = function (req, res, next) {
     next();
 }
 
-// let includeConfigObj = function (req, res, next) {
-//     req.config = {}
-//     next();
-// }
+let minifyHtmlOpts = {
+    override: true,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments: true,
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes: true,
+        removeEmptyAttributes: true
+    }
+}
+
+
 
 // App
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
+app.use(minifyHTML(minifyHtmlOpts))
 
 if (process.env.ENV == 'dev') {
     app.use(allowCrossDomain)
 }
 
 
-//app.use(includeConfigObj)
 app.use('/', index)
 app.use('/data-overview', dataOverview)
 app.use('/other-page', otherPage)

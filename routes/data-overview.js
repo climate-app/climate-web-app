@@ -12,6 +12,7 @@ dataOverview.get('/', (req, res) => {
 
   // GANSW705280118
   const address = req.query.address
+
   // {id, LATITUDE, LONGITUDE, MP_ID}
   let addressMetadata = getAddressMetadata(address)
 

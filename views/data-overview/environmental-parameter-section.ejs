@@ -1,0 +1,4 @@
+<% data.forEach((row, i)=> { %>
+    <% row.index=i %>
+    <%- include('data-overview-values', row) %>
+<% }); %>

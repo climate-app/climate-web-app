@@ -15,16 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concat-files": "^0.1.1",
     "d3": "^7.9.0",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "nodemon": "^3.1.7"
-  },
-  "devDependencies": {
-    "concat-files": "^0.1.1",
-    "dotenv": "^16.4.5",
+    "express-minify-html-2": "^2.0.0",
     "fs": "^0.0.1-security",
-    "minify": "^12.0.1",
+    "minify": "^13.0.0",
+    "nodemon": "^3.1.7",
     "path": "^0.12.7"
   }
 }

@@ -1,6 +1,9 @@
 html {
     overflow: hidden;
     /* Disables scrolling completely */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* Optional transition */
 }
 
 body {
@@ -38,7 +41,9 @@ main {
     background: rgba(255, 255, 255, 0.125);
 }
 
-.selectize-input, .selectize-input.dropdown-active, .selectize-dropdown {
+.selectize-input,
+.selectize-input.dropdown-active,
+.selectize-dropdown {
     border-radius: 0;
     border: unset;
 }
@@ -64,4 +69,14 @@ main {
 .v-margins-30 {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 576px) {
+    .overview-text {
+        text-align: left;
+    }
+
+    .overview-value {
+        text-align: right;
+    }
 }
