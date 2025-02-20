@@ -2,7 +2,7 @@
  * Get key from endpoint
  * @returns object with key "key"
  */
-async function getMeiliKey() {
+async function getMeiliKey(host) {
 
   let endpoint = 'meilikey'
 
