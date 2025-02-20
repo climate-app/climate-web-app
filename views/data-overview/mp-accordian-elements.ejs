@@ -1,0 +1,32 @@
+<%# { title: 'Voted consistently against' , policy_comparisons: [Array], voteBin: 6 } %>
+    <div class="py-2">
+        <h5>
+            <%= title %>
+        </h5>
+
+        <div class="accordion accordion-flush policy-table" id="policy-table-<%= voteBin %>">
+            <% policy_comparisons.forEach((v,i)=> { %>
+                <div class="accordion-item my-1" style="border: none;">
+                    <h2 class="accordion-header">
+                            <button class="accordion-button collapsed text-white <%= v.agreement> 50 ? 'bg-success': 'bg-danger' %>" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-policy-<%= v.policy.id %>"
+                                aria-expanded="false" aria-controls="flush-policy-<%= v.policy.id %>">
+                                <%= v.policy.name %>
+                            </button>
+                    </h2>
+                    <div id="flush-policy-<%= v.policy.id %>" class="accordion-collapse collapse"
+                        data-bs-parent="#policy-table-<%= voteBin %>">
+                        <div class="accordion-body">
+                            <p><%= v.policy.description %></p>
+                            <p>The voting patterns of this policy were:</p>
+                            <div style="height:200px;width:100%;">
+                                <canvas id="policy-<%= v.policy.id %>-chartjs"></canvas>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+    </div>

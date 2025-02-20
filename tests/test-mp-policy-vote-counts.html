@@ -38,7 +38,7 @@ Run live server with this document
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <div style="height:300px;width:100%;">
+                    <div style="height:500px;width:100%;">
                         <canvas id="meme-chartjs"></canvas>
                     </div>
                 </div>
@@ -47,21 +47,35 @@ Run live server with this document
     </div>
 
     <script>
+
         document.getElementById("collapseOne").addEventListener("shown.bs.collapse", function () {
-                makeThisChat('meme-chartjs', polData)
+            makeThisChat('meme-chartjs', polData)
         })
 
+        colors = ["#18bc9c", "#f39c12", '#e74c3c'] // bootrap flatly colors
+        //labels = ["Voted consistently for", "Voted almost always for", "Voted generally for", "Voted generally against", "Voted almost always against", "Voted consistently against"]
+        let labels = [
+            ["consistently", "for"],
+            ["almost",  "always", "for"],
+            ["generally", "for"],
+            ["generally", "against"],
+            ["almost", "always", "against"],
+            ["Voted", "consistently", "against"]
+        ]
+        mp_cat = 2
 
 
         let polData = {
-            labels: ["Voted consistently for", "Voted almost always for", "Voted generally for", "Voted generally against", "Voted almost always against", "Voted consistently against"],
+            labels: labels,
             datasets: [{
                 data: [12, 5, 9, 4, 2, 10],
-                backgroundColor: ['red', 'red', 'blue', 'red', 'red', 'red'],
+                backgroundColor: labels.map(() => colors[0]),
+                borderColor: labels.map((v, i) => i == mp_cat ? colors[2] : colors[0]),
+                borderWidth: labels.map((v, i) => i == mp_cat ? 10 : 0),
             }]
         }
 
-        
+
 
         function makeThisChat(id, data) {
 
@@ -77,6 +91,21 @@ Run live server with this document
                     scales: {
                         y: {
                             beginAtZero: true
+                        },
+                        x: {
+                            weight: 5,
+                            ticks: {
+                                align: 'center',
+                                //maxRotation: 90,
+                                //minRotation: 90,
+                                //padding: 10,                     
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
                         }
                     },
                     plugins: {

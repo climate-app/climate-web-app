@@ -1,0 +1,87 @@
+{
+    "id": 10895,
+    "latest_member": {
+        "id": 721,
+        "name": {
+            "first": "Anne",
+            "last": "Stanley"
+        },
+        "electorate": "Werriwa",
+        "house": "representatives",
+        "party": "Australian Labor Party"
+    },
+    "rebellions": 0,
+    "votes_attended": 1629,
+    "votes_possible": 1677,
+    "offices": [],
+    "policy_comparisons": [
+        {
+            "title": "Voted consistently for",
+            "policy_comparisons": [
+                {
+                    "policy": {
+                        "id": 316,
+                        "name": "climate change mitigation strategies (e.g., carbon capture and storage)",
+                        "description": "the federal government should encourage climate mitigation strategies, including carbon capture and storage (CCS) and marine geoengineering",
+                        "provisional": false,
+                        "last_edited_at": "2024-10-06T10:25:54+11:00"
+                    },
+                    "agreement": "92",
+                    "voted": true
+                },
+                {
+                    "policy": {
+                        "id": 183,
+                        "name": "the Paris Climate Agreement",
+                        "description": "the federal government should amend its laws and policies to meet the objectives of the Paris Climate Agreement",
+                        "provisional": false,
+                        "last_edited_at": "2024-08-07T10:25:54+10:00"
+                    },
+                    "agreement": "88",
+                    "voted": true
+                }
+            ],
+            "voteBin": 0
+        },
+        {
+            "title": "Voted almost always for",
+            "policy_comparisons": [
+                "Array"
+            ],
+            "voteBin": 1
+        },
+        {
+            "title": "Voted generally for",
+            "policy_comparisons": [
+                "Array"
+            ],
+            "voteBin": 2
+        },
+        {
+            "title": "Voted a mixture of for and against",
+            "policy_comparisons": [],
+            "voteBin": 3
+        },
+        {
+            "title": "Voted generally against",
+            "policy_comparisons": [
+                "Array"
+            ],
+            "voteBin": 4
+        },
+        {
+            "title": "Voted almost always against",
+            "policy_comparisons": [
+                "Array"
+            ],
+            "voteBin": 5
+        },
+        {
+            "title": "Voted consistently against",
+            "policy_comparisons": [
+                "Array"
+            ],
+            "voteBin": 6
+        }
+    ]
+}

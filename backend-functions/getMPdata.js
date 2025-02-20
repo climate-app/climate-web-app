@@ -10,8 +10,10 @@ export function getMPJson(id) {
 
         let mpData = JSON.parse(readFileSync(filePath, 'utf8'));
 
+        // Climate policy IDs
         const idsToFilter = [3, 7, 14, 20, 33, 37, 64, 103, 127, 152, 183, 222, 225, 227, 228, 250, 260, 268, 273, 274, 285, 286,
             287, 316, 323, 141, 154, 162, 201, 231, 302]
+
         const idSet = new Set(idsToFilter)
 
         mpData.policy_comparisons = mpData.policy_comparisons.filter(x => idSet.has(x.policy.id))
@@ -49,6 +51,9 @@ export function getMPJson(id) {
                 voteBin: i
             }
         })
+
+        //console.log(mpData)
+        //console.log(mpData.policy_comparisons[1].policy_comparisons)
 
         return mpData
 

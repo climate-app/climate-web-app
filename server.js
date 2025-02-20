@@ -16,7 +16,7 @@ import { about } from './routes/about.js';
 import { info } from './routes/info.js';
 import { route as meilisearchKey } from "./routes/meilisearch-api-key.js"
 import { route as testJsons } from "./routes/test-jsons.js"
-
+import { route as voteCountJson } from "./routes/vote-counts.js"
 // Middlewares
 let allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "http://localhost:9876");
@@ -55,6 +55,7 @@ app.use('/other-page', otherPage)
 app.use('/about', about)
 app.use('/info', info)
 app.use('/meilikey', meilisearchKey)
+app.use('/getvotecounts', voteCountJson)
 app.use('/testjsons', testJsons)
 
 app.listen(PORT, () => {
