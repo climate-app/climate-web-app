@@ -1,19 +1,19 @@
 import child from 'node:child_process'
 import os from 'node:os'
 import path from "node:path"
+//import Papa from 'papaparse'
 
-export function getAddressMetadata(id) {
-    
-    //const filePath = path.join('data', 'address-id-coordinates-mp-id.csv');
-    const filePath = path.join('data', 'address-id-coordinates-mp-id-gnaf-core-columns.csv');
+function grepFile(file, id) {
+
+    const filePath = path.join('data', file);
 
     const platform = os.platform();
-    
+
     const execCommand = platform === 'win32'
         ? `findstr "${id}" "${filePath}"`
         : `grep "${id}" "${filePath}"`;
 
-    let addressMetadataBuffer = child.execSync(execCommand, (error, stdout, stderr) => {
+    let fileBuffer = child.execSync(execCommand, (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;
@@ -27,6 +27,13 @@ export function getAddressMetadata(id) {
         //console.log(`stdout:\n${stdout}`);
         return stdout
     })
+
+    return fileBuffer
+}
+
+function getAddressCoordsMP(id) {
+
+    let addressMetadataBuffer = grepFile('address-id-coordinates-mp-id-gnaf-core-columns.csv', id)
 
     // Split the CSV string and create an object by mapping keys to values
     const addressMetadataKeys = ["id", "LATITUDE", "LONGITUDE", "MP_ID"];
@@ -44,4 +51,28 @@ export function getAddressMetadata(id) {
     addressMetadata.LONGITUDE = Number(addressMetadata.LONGITUDE)
 
     return addressMetadata
+}
+
+function getAddressLabel(id) {
+
+    let addressMetadataBuffer = grepFile('address-id-labels-nsw.psv', id)
+
+    // Split the CSV string and create an object by mapping keys to values
+    const addressMetadataKeys = ["id", "label"];
+
+    let addressMetadata = addressMetadataBuffer
+        .toString()
+        .replace(/(\r\n|\n|\r)/gm, "")
+        .split("|")
+        .reduce((obj, value, index) => {
+            obj[addressMetadataKeys[index]] = value
+            return obj;
+        }, {});
+
+    return addressMetadata
+}
+
+export const addressGet = {
+    CoordsMP: getAddressCoordsMP,
+    Label: getAddressLabel
 }

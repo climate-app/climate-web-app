@@ -1,0 +1,32 @@
+.autocomplete {
+    background: white;
+    z-index: 1000;
+    overflow: auto;
+    box-sizing: border-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    color: black;
+}
+
+.autocomplete * {
+    font: inherit;
+}
+
+.autocomplete>div {
+    padding: 0 4px;
+}
+
+.autocomplete>div{
+    cursor: pointer;
+}
+
+
+.autocomplete>div:hover {
+    color: white;
+    background-color: var(--bs-primary);
+}
+
+.autocomplete>div.selected {
+    color: white;
+    background: var(--bs-success);
+}

@@ -43,6 +43,3 @@ async function selectizeAddress(id) {
         }
     });
 }
-
-
-

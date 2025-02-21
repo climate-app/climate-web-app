@@ -1,0 +1,15 @@
+.selectize-input,
+.selectize-input.dropdown-active,
+.selectize-dropdown {
+    border-radius: 0;
+    border: unset;
+}
+
+.selectize-dropdown .active {
+    background: var(--bs-success);
+}
+
+.selectize-dropdown .active:not(.selected) {
+    background: var(--bs-primary);
+    color: white;
+}

@@ -1,20 +1,24 @@
 {
   "name": "climate-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "The awesome climate app",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "yarn concat && yarn minify && node server.js",
-    "startDev": "nodemon --ignore public/ --ignore frontend-assets/tmp --ext js,mjs,cjs,json,css --exec \"yarn concat && yarn minify && node server.js\"",
-    "concat": "node ./backend-functions/concatFrontendFunctions.js",
-    "minify": "minify ./frontend-assets/tmp/frontend-functions.js > ./public/frontend-functions.min.js && minify ./frontend-assets/styles.css > ./public/styles.min.css",
+    "start": "node server.js",
+    "prestart": "yarn buildFiles",
+    "startDev": "nodemon",
+    "buildFiles": "yarn concat && yarn minifyJS && yarn minifyCSS",
+    "concat": "node ./backend-functions/concatFrontendAssets.js",
+    "minifyJS": "minify ./frontend-assets/tmp/frontend-functions.js > ./public/frontend-functions.min.js",
+    "minifyCSS": "minify ./frontend-assets/tmp/frontend-styles.css > ./public/styles.min.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autocompleter": "^9.3.2",
     "concat-files": "^0.1.1",
     "d3": "^7.9.0",
     "dotenv": "^16.4.7",
@@ -24,6 +28,7 @@
     "fs": "^0.0.1-security",
     "minify": "^13.0.0",
     "nodemon": "^3.1.7",
+    "papaparse": "^5.5.2",
     "path": "^0.12.7"
   }
 }

@@ -1,6 +1,6 @@
 import express from 'express';
 import * as d3 from "d3";
-import { getAddressMetadata } from '../backend-functions/getAddressMetadata.js'
+import { addressGet } from '../backend-functions/getAddressMetadata.js'
 import { iwio } from '../backend-functions/indrawebIO.js';
 import { iww } from '../backend-functions/indrawebWrangle.js';
 import { getMPJson } from '../backend-functions/getMPdata.js';
@@ -14,8 +14,11 @@ dataOverview.get('/', (req, res) => {
   const address = req.query.address
 
   // {id, LATITUDE, LONGITUDE, MP_ID}
-  let addressMetadata = getAddressMetadata(address)
+  let addressMetadata = addressGet.CoordsMP(address)
 
+  // {id, label}
+  let addressLabel = addressGet.Label(address)
+  addressMetadata.label = addressLabel.label
 
   // Get the JSON data 
   let pObs = {

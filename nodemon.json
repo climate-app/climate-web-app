@@ -1,0 +1,5 @@
+{
+    "ignore": ["public/", "frontend-assets/tmp"],
+    "ext": "js,mjs,cjs,json,css",
+    "exec": "yarn buildFiles && node server.js"
+}

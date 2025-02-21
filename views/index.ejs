@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <%- include('partials/head-index') %>
+    <%- include('partials/head') %>
+        <%- include('index/head-index') %>
 </head>
 
 <body>
@@ -21,13 +22,16 @@
                     climate predictions for your home
                 </p>
 
+                <div style="max-width:700px;margin:auto;">
+                    <input type="text" id="address-search" class="form-control" name="address-text"
+                        placeholder="Enter a NSW street address ..." autocomplete="off">
+                    <form action="./data-overview" method="get">
+                        <!-- <input type="text" id="address-search" name="address" placeholder="Enter a NSW street address."> -->
+                        <input type="hidden" id="address_id" name="address">
+                        <input id='get-address' class="btn btn-primary my-2" type="submit" value="Submit">
+                    </form>
 
-                <form action="./data-overview" method="get" style="max-width:700px;margin:auto;">
-                    <input type="text" id="address-search" name="address" placeholder="Enter a NSW street address.">
-                    <input id='get-address' class="btn btn-primary my-2" type="submit" value="Submit">
-                </form>
-
-
+                </div>
 
             </div>
     </main>
@@ -37,9 +41,8 @@
     </footer>
 
     <script>
-
-        selectizeAddress('#address-search');
-
+        //selectizeAddress('#address-search');
+        autocompleteAddress('address-search')
     </script>
 
 </body>
