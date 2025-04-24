@@ -4,6 +4,7 @@ import { addressGet } from '../backend-functions/getAddressMetadata.js'
 import { iwio } from '../backend-functions/indrawebIO.js';
 import { iww } from '../backend-functions/indrawebWrangle.js';
 import { getMPJson } from '../backend-functions/getMPdata.js';
+import { getClimateKeySummaryData } from "../backend-functions/getClimateKeySummaryData.js"
 
 export const dataOverview = express.Router()
 
@@ -90,14 +91,17 @@ dataOverview.get('/', (req, res) => {
       let ffdiAnnual = iww.createDataOverviewBoxData("Forest Fire Danger Index (above 'Very High')", 'days', iwData.ffdiAnnualObs, iwData.ffdiAnnualProj)
 
       let mpData = getMPJson(addressMetadata.MP_ID)
+      let climateSummaryText = getClimateKeySummaryData('ECSC')
 
+      //console.log(climateSummaryText)
 
       // create ejs data
       let renderData = {
         addressMetadata: addressMetadata,
         //data: [tempAnnual, tempThreshAnnual, rainAnnual, ffdiAnnual],
         data: [tempAnnual, tempThreshAnnual, ffdiAnnual],
-        mpData: mpData
+        mpData: mpData,
+        climateSummaryText: climateSummaryText
       }
 
       // render
