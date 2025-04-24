@@ -19,6 +19,11 @@ Use `pm2` to run on server. There will be dev and prod versions running, thus in
 
 Use nginx to point to the different instances
 
+When updating
+
+ - pull the changes
+ - run `pm2 restart {id}` (id = 0/1 for dev/prod)
+
 ## Notes about the app
 
 ### .env
@@ -35,6 +40,8 @@ USETESTDATA=false  # use test data instead of indra API
 ```
 
 ### data/
+
+These should be symbolically linked in dev/prod from the (external) source /data folder
 
 Should have
 
