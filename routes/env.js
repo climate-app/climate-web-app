@@ -1,8 +1,9 @@
-
 import express from 'express';
 export const route = express.Router()
+import 'dotenv/config';
 
-// define the home page route
 route.get('/', (req, res) => {
-  res.render('index');
-})
+
+    console.log(process)
+
+});

@@ -1,83 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <%- include('partials/head') %> <%-
+    include('data-overview/head-data-overview') %>
+  </head>
 
-<head>
-    <%- include('partials/head') %>
-    <%- include('data-overview/head-data-overview') %>
-</head>
-
-<body>
-
+  <body>
     <!-- Are comments included ? -->
 
-    <header class="border-bottom border-white">
-        <%- include('partials/navbar'); %>
-    </header>
+    <header><%- include('partials/navbar'); %></header>
 
-    <main>
-
-        <div id='report-top' class="p-2">
-            <h3>Data Overview Report</h3>
-
-            <a href="/" class="btn btn-primary">Go back</a>
-
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <p>The query is <%= addressMetadata.label %>
-                        </p>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div id="location-map" style="height:256px;width:100%;"></div>
-                    </div>
-                </div>
-
-                <script>
-                    showLocationMap("location-map", '<%=addressMetadata.LATITUDE %>', '<%=addressMetadata.LONGITUDE %>')
-                </script>
-
-            </div>
-
-            <div>
-                <div>Emission scenario</div>
-                <div style="max-width: 500px; margin:auto;">
-                    <div id='emission-selector' class="btn-group" role="group"
-                        aria-label="Basic radio toggle button group" style="width: 100%;">
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btn-rcp45" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="btn-rcp45">Low (RCP 4.5)</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btn-rcp85" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-rcp85">High (RCP 8.5)</label>
-
-                    </div>
-                </div>
-                <script>addEmissionToggleToButtons()</script>
-            </div>
-
-            <div>
-                <h4>Summary</h4>
-                <%- include('data-overview/summary-section', data ); %>
-            </div>
+    <main class="text-primary">
+      <div id="report-top" class="p-2">
+        <div class="row justify-content-between">
+          <div class="col-9 d-flex align-items-center justify-content-start">
+            <h3 class="m-0">Data Overview Report</h3>
+          </div>
+          <div class="col-3 d-flex align-items-center justify-content-end">
+            <a href="/" class="btn btn-primary">Go&nbsp;back</a>
+          </div>
         </div>
 
+        <div class="mt-2">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="h-100 p-2">
+                <div
+                  id="location-map"
+                  class="h-100 w-100"
+                  style="min-height: 256px"
+                ></div>
+              </div>
+            </div>
 
-        <div id="env-vars" class="p-2">
-            <h4> Environmental parameters </h4>
-            <%- include('data-overview/environmental-parameter-section', data); %>
+            <div class="col">
+              <p>
+                Address:
+                <span class="fw-bold"><%= addressMetadata.label %></span>
+              </p>
+              <p>
+                Climate cluster:
+                <span class="fw-bold"><%= climateSummaryText.title %></span>
+              </p>
+              <ul class="ps-3">
+                <% climateSummaryText.keyMessages.forEach(v=> { %>
+                <li><%- v %></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+
+          <script>
+            showLocationMap(
+              "location-map",
+              "<%=addressMetadata.LATITUDE %>",
+              "<%=addressMetadata.LONGITUDE %>"
+            );
+          </script>
         </div>
 
-        <div id="poli-vars" class="p-2">
-            <h4> Politics </h4>
-            <%- include('data-overview/mp-overview-section', mpData) %>
+        <div class="mt-2">
+          <h4>Emission scenario</h4>
+          <div style="max-width: 500px; margin: auto">
+            <div
+              id="emission-selector"
+              class="btn-group"
+              role="group"
+              aria-label="Basic radio toggle button group"
+              style="width: 100%"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btn-rcp45"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-primary" for="btn-rcp45"
+                >Low (RCP 4.5)</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btn-rcp85"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="btn-rcp85"
+                >High (RCP 8.5)</label
+              >
+            </div>
+          </div>
+          <script>
+            addEmissionToggleToButtons();
+          </script>
         </div>
 
+        <div>
+          <h4>Summary</h4>
+          <%- include('data-overview/summary-section', data ); %>
+        </div>
+      </div>
+
+      <div id="env-vars" class="p-2">
+        <h4>Environmental parameters</h4>
+        <%- include('data-overview/environmental-parameter-section', data); %>
+      </div>
+
+      <div id="poli-vars" class="p-2">
+        <h4>Politics</h4>
+        <%- include('data-overview/mp-overview-section', mpData) %>
+      </div>
     </main>
 
-    <footer>
-        <%- include('partials/footer'); %>
-    </footer>
-
-</body>
-
+    <footer><%- include('partials/footer'); %></footer>
+  </body>
 </html>

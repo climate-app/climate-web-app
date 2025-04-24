@@ -8,15 +8,15 @@
 
 <body>
 
-    <header class="border-bottom border-white">
+    <header >
         <%- include('partials/navbar'); %>
     </header>
 
     <main class="main-home">
         <div class="row h-100 align-items-start px-2">
 
-            <div>
-                <h1 class="display-1 text-center my-5">MyClimate</h1>
+            <div class="text-primary">
+                <h1 class="display-1 fw-bold text-center my-5">MyClimate</h1>
 
                 <p class="text-center my-5" style="max-width:500px;margin:auto;">
                     climate predictions for your home
@@ -41,7 +41,6 @@
     </footer>
 
     <script>
-        //selectizeAddress('#address-search');
         autocompleteAddress('address-search')
     </script>
 

@@ -12,6 +12,7 @@
                     <canvas id="<%= index %>-overview-chartjs"></canvas>
                 </div>
                 <script>
+                    "<% data %>"
                     makeDataOverviewChartjs("<%= index %>-overview-chartjs", <%- JSON.stringify(data) %>)
                 </script>
             </div>
