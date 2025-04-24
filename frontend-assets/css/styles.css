@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.60)), url('images/cloud-background.webp');
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.60) 25%, rgba(255, 255, 255, 0.60) 75%, rgba(255, 255, 255, 0) 100%), url('images/cloud-background.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
